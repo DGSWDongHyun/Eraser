@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.dashboard;
+package com.luckly.eraser.ui.write;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,13 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.gson.Gson;
 import com.luckly.eraser.R;
@@ -26,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class DashboardFragment extends Fragment {
+public class WriteFragment extends Fragment {
     String key = "KEY-SAVE";
     EditText editText_content;
     Button submitButton;
@@ -51,7 +48,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_write, container, false);
 
         return root;
     }

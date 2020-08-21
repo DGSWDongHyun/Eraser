@@ -1,27 +1,41 @@
-package com.luckly.eraser.ui.dragndrop;
+package com.luckly.eraser.ui.dragndrop.listener;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.luckly.eraser.R;
 
 import java.util.Locale;
 
 public class DragDropOnDragListener implements View.OnDragListener {
     TextToSpeech tts;
+    String[] str_healing = {"당신의 고민이 치유되기를 바라.\n 당신이 많이 힘들었고, 고통스러웠던 걸 알았기에 더더욱.",
+            "오늘의 마음이 내일의 마음에는 긁힘하나 나지 않게, \n당신의 마음은 누구보다 당신이 잘 알기에.",
+            "오늘만큼은 당신에게 관대해지는 건 어떨까요? \n당신은 존중받아야 마땅한 존재인걸요.",
+            "너무 아파하지마요, 겉에 상처도 천천히 아물고 치유되듯이,\n당신의 마음도 천천히 치유될거에요.",
+            "누구든 상처는 있기 마련이지만, 오늘 이후로 누군가 이 일을 기억하냐고 묻는다면, \n신경쓰지 않는다고 당당히 말할 수 있는 사람이 되길."};
     private Context context = null;
+    private Activity activity = null;
 
-    public DragDropOnDragListener(Context context) {
+    public DragDropOnDragListener(Context context, Activity activity) {
         this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -92,6 +106,24 @@ public class DragDropOnDragListener implements View.OnDragListener {
 
                 if(srcView.getParent() != owner){
                     srcView.setVisibility(View.INVISIBLE);
+
+                    TextView tv = activity.findViewById(R.id.thx);
+                    Animation animation = AnimationUtils.loadAnimation(activity, R.anim.visible_effects);
+
+                    int rand = (int)(Math.random() * str_healing.length);
+                    tv.setText(str_healing[rand]);
+                    tv.setAnimation(animation);
+                    tv.setVisibility(View.VISIBLE);
+
+                    new Handler().postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                           activity.finish();
+                        }
+                    }, 5000);// 0.5초 정도 딜레이를 준 후 시작
+
                 }else{
                     srcView.setVisibility(View.VISIBLE);
                 }

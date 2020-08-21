@@ -6,18 +6,15 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.luckly.eraser.R;
-
-import java.util.Objects;
+import com.luckly.eraser.ui.dragndrop.listener.DragDropOnDragListener;
+import com.luckly.eraser.ui.dragndrop.listener.DragDropOnTouchListener;
 
 
 public class DragDropActivity extends AppCompatActivity {
@@ -84,7 +81,7 @@ public class DragDropActivity extends AppCompatActivity {
             ConstraintLayoutTop = (ConstraintLayout)findViewById(R.id.drag_drop_left_layout);
 
             // Set on drag listener to target dropped view.
-            ConstraintLayoutTop.setOnDragListener(new DragDropOnDragListener(context));
+            ConstraintLayoutTop.setOnDragListener(new DragDropOnDragListener(context, this));
         }
 
         if(ConstraintLayoutBottom == null)
@@ -92,7 +89,7 @@ public class DragDropActivity extends AppCompatActivity {
             ConstraintLayoutBottom = (ConstraintLayout) findViewById(R.id.drag_drop_right_layout);
 
             // Set on drag listener to target dropped view.
-            ConstraintLayoutBottom.setOnDragListener(new DragDropOnDragListener(context));
+            ConstraintLayoutBottom.setOnDragListener(new DragDropOnDragListener(context, this));
         }
     }
 }
