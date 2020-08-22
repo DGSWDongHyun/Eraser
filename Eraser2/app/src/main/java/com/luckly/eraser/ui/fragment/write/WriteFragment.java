@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.write;
+package com.luckly.eraser.ui.fragment.write;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 import com.luckly.eraser.R;
-import com.luckly.eraser.data.Write;
-import com.luckly.eraser.ui.dragndrop.DragDropActivity;
+import com.luckly.eraser.data.write.Write;
+import com.luckly.eraser.ui.activity.dragndrop.DragDropActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.dragndrop.listener;
+package com.luckly.eraser.ui.activity.dragndrop.listener;
 
 import android.content.ClipData;
 import android.view.MotionEvent;

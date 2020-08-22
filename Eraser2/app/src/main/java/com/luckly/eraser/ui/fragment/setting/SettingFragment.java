@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.setting;
+package com.luckly.eraser.ui.fragment.setting;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

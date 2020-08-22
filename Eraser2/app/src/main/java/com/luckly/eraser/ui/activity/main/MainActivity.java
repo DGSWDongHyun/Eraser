@@ -1,4 +1,4 @@
-package com.luckly.eraser;
+package com.luckly.eraser.ui.activity.main;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -6,9 +6,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.luckly.eraser.ui.write.WriteFragment;
-import com.luckly.eraser.ui.home.HomeFragment;
-import com.luckly.eraser.ui.setting.SettingFragment;
+import com.luckly.eraser.R;
+import com.luckly.eraser.ui.fragment.write.WriteFragment;
+import com.luckly.eraser.ui.fragment.home.HomeFragment;
+import com.luckly.eraser.ui.fragment.setting.SettingFragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

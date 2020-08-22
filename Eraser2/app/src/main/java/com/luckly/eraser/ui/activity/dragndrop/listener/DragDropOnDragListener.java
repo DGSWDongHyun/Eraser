@@ -1,11 +1,9 @@
-package com.luckly.eraser.ui.dragndrop.listener;
+package com.luckly.eraser.ui.activity.dragndrop.listener;
 
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.view.DragEvent;
@@ -13,15 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.luckly.eraser.R;
-
-import java.util.Locale;
 
 public class DragDropOnDragListener implements View.OnDragListener {
     TextToSpeech tts;

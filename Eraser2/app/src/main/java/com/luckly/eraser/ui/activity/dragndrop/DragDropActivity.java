@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.dragndrop;
+package com.luckly.eraser.ui.activity.dragndrop;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.luckly.eraser.R;
-import com.luckly.eraser.ui.dragndrop.listener.DragDropOnDragListener;
-import com.luckly.eraser.ui.dragndrop.listener.DragDropOnTouchListener;
+import com.luckly.eraser.ui.activity.dragndrop.listener.DragDropOnDragListener;
+import com.luckly.eraser.ui.activity.dragndrop.listener.DragDropOnTouchListener;
 
 
 public class DragDropActivity extends AppCompatActivity {
