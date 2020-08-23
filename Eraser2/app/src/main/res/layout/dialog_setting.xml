@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_bg"
         android:layout_width="150dp"
         android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,11 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginTop="369dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/img_bg"
         app:layout_constraintVertical_bias="0.055">
 
         <Button
@@ -34,13 +35,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:background="@android:color/white"
             android:fontFamily="@font/simple_font"
             android:gravity="center"
             android:shadowColor="#007bff"
             android:shadowDx="5.0"
             android:shadowDy="5.0"
             android:shadowRadius="5.0"
-            android:background="@android:color/white"
             android:text="이미지 선택" />
     </androidx.cardview.widget.CardView>
 

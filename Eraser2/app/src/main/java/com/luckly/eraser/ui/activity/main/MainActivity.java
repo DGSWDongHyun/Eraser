@@ -1,7 +1,13 @@
 package com.luckly.eraser.ui.activity.main;
 
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -13,22 +19,45 @@ import com.luckly.eraser.ui.fragment.setting.SettingFragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.io.ByteArrayOutputStream;
 
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private ImageView Recorder_;
     private int nowPlaying = 0;
+    ConstraintLayout container;
+    Bitmap bitmap;
+    String lawBitmap;
+    private static final String KEY = "SAVE_IMAGE";
     private int[] MusicList = {R.raw.upon_a_star, R.raw.ghostsong};
     private HomeFragment Home = new HomeFragment();
     private WriteFragment DashBoard = new WriteFragment();
+    SharedPreferences sharedPreferences;
     private SettingFragment Notification = new SettingFragment();
     private FragmentManager fragmentManager = getSupportFragmentManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        container = findViewById(R.id.container);
+        sharedPreferences = getSharedPreferences(KEY,MODE_PRIVATE);
+
+        lawBitmap = sharedPreferences.getString("Bitmap_String", null);
+
+        Log.i("getResult()", lawBitmap);
+
+        if(lawBitmap == null)
+            container.setBackground(getDrawable(R.drawable.background));
+        else {
+            bitmap = StringToBitMap(lawBitmap);
+            container.setBackground(new BitmapDrawable(bitmap));
+        }
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frames, Home).commitAllowingStateLoss();
@@ -40,8 +69,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void onDestroy(){
+    public String BitMapToString(Bitmap bitmap){
+
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+
+        return temp;
+
+    }
+    public Bitmap StringToBitMap(String encodedString){
+        try{
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }catch(Exception e){
+            e.getMessage();
+            return null;
+        }
+    }
+    public void setBackground(BitmapDrawable bitmap, Bitmap lawBitmap){
+        this.lawBitmap = BitMapToString(lawBitmap);
+        container.setBackground(bitmap);
+    }
+    public void onDestroy() {
         mediaPlayer.stop();
+        sharedPreferences = getSharedPreferences(KEY,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Bitmap_String", lawBitmap);
+        editor.commit();
         super.onDestroy();
     }
     private void musicPlayer(){
