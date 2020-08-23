@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
@@ -32,13 +31,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/simple_font"
         android:gravity="center"
+        android:shadowColor="#007bff"
+        android:shadowDx="5.0"
+        android:shadowDy="5.0"
+        android:shadowRadius="5.0"
         android:text="오늘은 무엇이 당신을 힘들게 했나요?\n괜찮아요. 다 잘 될 거에요."
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        android:shadowColor="#007bff"
-        android:shadowRadius="5.0"
-        android:shadowDx="5.0"
-        android:shadowDy="5.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -64,8 +63,8 @@
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -139,7 +138,7 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.536"
+                app:layout_constraintHorizontal_bias="0.557"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.578" />
@@ -157,7 +156,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.41"
+                app:layout_constraintHorizontal_bias="0.438"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.448" />
@@ -175,21 +174,47 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp"
         app:layout_constraintVertical_bias="0.284"
         app:sliderAnimationDuration="600"
         app:sliderAutoCycleDirection="back_and_forth"
         app:sliderAutoCycleEnabled="true"
         app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorEnabled="false"
         app:sliderIndicatorGravity="center_horizontal|bottom"
         app:sliderIndicatorMargin="15dp"
         app:sliderIndicatorOrientation="horizontal"
         app:sliderIndicatorPadding="3dp"
         app:sliderIndicatorRadius="2dp"
-        app:sliderIndicatorEnabled="false"
         app:sliderIndicatorSelectedColor="#5A5A5A"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1"
-        app:sliderStartAutoCycle="true" />
+        app:sliderStartAutoCycle="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/simple_font"
+                android:gravity="center"
+                android:shadowColor="#007bff"
+                android:shadowDx="5.0"
+                android:shadowDy="5.0"
+                android:shadowRadius="5.0"
+                android:text="당신의 시간\n이 곳 에선 편히 있길 바라."
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.502" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.smarteist.autoimageslider.SliderView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

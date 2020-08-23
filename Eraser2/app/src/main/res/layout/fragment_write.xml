@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".ui.fragment.write.WriteFragment">
 
     <TextView
@@ -33,10 +32,6 @@
         android:layout_width="0dp"
         android:layout_height="400dp"
         android:layout_marginStart="10dp"
-        android:shadowColor="#007bff"
-        android:shadowDx="5.0"
-        android:shadowDy="5.0"
-        android:shadowRadius="5.0"
         android:layout_marginEnd="10dp"
         android:background="@drawable/board_drawable"
         android:ems="10"
@@ -44,6 +39,10 @@
         android:hint="고민을 탈탈, 털어놓으세요. 이곳은 당신만의 공간입니다."
         android:inputType="textMultiLine|textPersonName"
         android:padding="15dp"
+        android:shadowColor="#007bff"
+        android:shadowDx="5.0"
+        android:shadowDy="5.0"
+        android:shadowRadius="5.0"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.luckly.eraser.ui.adapter.list;
+package com.luckly.eraser.ui.adapter.list.deleted;
 
 import android.content.Context;
 import android.view.LayoutInflater;

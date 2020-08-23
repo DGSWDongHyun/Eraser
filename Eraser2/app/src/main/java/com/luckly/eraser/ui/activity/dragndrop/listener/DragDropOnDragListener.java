@@ -6,6 +6,7 @@ import android.content.ClipDescription;
 import android.content.Context;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.telecom.Call;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,7 +116,8 @@ public class DragDropOnDragListener implements View.OnDragListener {
                         @Override
                         public void run()
                         {
-                           activity.finish();
+                            activity.finish();
+                            activity.overridePendingTransition(R.anim.visible_effects,R.anim.invisible_effects);
                         }
                     }, 5000);// 0.5초 정도 딜레이를 준 후 시작
 

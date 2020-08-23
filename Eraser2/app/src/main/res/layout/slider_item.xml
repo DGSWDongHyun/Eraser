@@ -12,28 +12,4 @@
         android:scaleType="fitXY" />
 
 
-    <FrameLayout
-        android:id="@+id/fl_shadow_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <TextView
-            android:id="@+id/tv_auto_image_slider"
-            android:fontFamily="@font/simple_font"
-            android:shadowColor="#007bff"
-            android:shadowDx="5.0"
-            android:layout_margin="10dp"
-            android:shadowDy="5.0"
-            android:shadowRadius="5.0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="25dp"
-            android:padding="6dp"
-            android:textColor="#FFF"
-            android:textSize="18sp" />
-
-    </FrameLayout>
-
 </FrameLayout>
