@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +42,13 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
     List<Setting> setting;
     Context context;
     Fragment fragment;
+    Activity activity;
 
-    public SettingAdapter(List<Setting> setting, Context context, Fragment fragment){
+    public SettingAdapter(List<Setting> setting, Context context, Fragment fragment, Activity activity){
         this.setting = setting;
         this.context = context;
         this.fragment = fragment;
+        this.activity = activity;
     }
 
 
@@ -118,6 +121,10 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
                                 AlertDialog alert_dev = builder_dev.create();
                                 alert_dev.show();
                                 break;
+                            case "설정 초기화":
+                                Bitmap bitmap = ((BitmapDrawable)context.getDrawable(R.drawable.background)).getBitmap();
+                                ((MainActivity)activity).setBackground(new BitmapDrawable(bitmap), bitmap);
+                                break;
                         }
                     }
                 }
@@ -130,6 +137,9 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
     }
     private void initializeSetting(View settingDetailView, AlertDialog alert){
         Button button = settingDetailView.findViewById(R.id.Select_Button);
+        ImageView img = settingDetailView.findViewById(R.id.img_bg);
+
+        img.setImageDrawable(((MainActivity)activity).getBackground());
         button.setOnClickListener(v->{
             Intent intent = new Intent();
             intent.setType("image/*");

@@ -47,8 +47,9 @@ public class SettingFragment extends Fragment {
         list = new ArrayList<Setting>();
         list.add(new Setting("배경 설정", "배경을 설정 할 수 있어요."));
         list.add(new Setting("개발자 보기", "개발자를 볼 수 있어요."));
+        list.add(new Setting("설정 초기화", "설정을 초기화 할 수 있어요."));
 
-        adapter = new SettingAdapter(list, getContext(), this);
+        adapter = new SettingAdapter(list, getContext(), this, getActivity());
 
         LinearLayoutManager manger = new LinearLayoutManager(requireContext());
         recyclerView.setAdapter(adapter);

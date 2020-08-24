@@ -1,5 +1,6 @@
 package com.luckly.eraser.ui.activity.main;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.luckly.eraser.R;
+import com.luckly.eraser.ui.activity.splash.SplashActivity;
+import com.luckly.eraser.ui.button.back.BackPressCloseHandler;
 import com.luckly.eraser.ui.fragment.write.WriteFragment;
 import com.luckly.eraser.ui.fragment.home.HomeFragment;
 import com.luckly.eraser.ui.fragment.setting.SettingFragment;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private int nowPlaying = 0;
     ConstraintLayout container;
     Bitmap bitmap;
+    BackPressCloseHandler backPressCloseHandler;
     String lawBitmap;
     private static final String KEY = "SAVE_IMAGE";
     private int[] MusicList = {R.raw.upon_a_star, R.raw.ghostsong};
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
+        Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.visible_effects, R.anim.invisible_effects);
 
         container = findViewById(R.id.container);
         sharedPreferences = getSharedPreferences(KEY,MODE_PRIVATE);
@@ -68,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public BitmapDrawable getBackground(){
+        return new BitmapDrawable(((BitmapDrawable)container.getBackground()).getBitmap());
+    }
+    @Override
+    public void onBackPressed(){
+        backPressCloseHandler.onBackPressed();
     }
     public String BitMapToString(Bitmap bitmap){
 
