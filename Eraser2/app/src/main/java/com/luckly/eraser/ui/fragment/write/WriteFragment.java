@@ -41,6 +41,7 @@ public class WriteFragment extends Fragment {
             String date_str = new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date(System.currentTimeMillis()));
             intent.putExtra("Date_string", date_str);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.visible_effects,R.anim.invisible_effects);
         });
 
     }

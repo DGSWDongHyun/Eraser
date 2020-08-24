@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.luckly.eraser.R;
 import com.luckly.eraser.data.setting.Setting;
 import com.luckly.eraser.data.write.Write;
+import com.luckly.eraser.ui.activity.main.MainActivity;
 import com.luckly.eraser.ui.adapter.list.deleted.EraserAdapter;
 
 import java.io.InputStream;
@@ -91,11 +95,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
                                         .setTitle("배경 설정하기")
                                         .setCancelable(false)
                                         .setView(settingDetailView)
-                                        .setPositiveButton("확인",new DialogInterface.OnClickListener(){
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                            }
-                                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                             }
@@ -105,6 +105,18 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
                                 alert.show();
                                 break;
                             case "개발자 보기":
+                                View aboutDeveloper = View.inflate(context, R.layout.setting_dev, null);
+                                AlertDialog.Builder builder_dev = new AlertDialog.Builder(context)
+                                        .setTitle("개발자 보기")
+                                        .setCancelable(false)
+                                        .setView(aboutDeveloper)
+                                        .setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            }
+                                        });
+                                AlertDialog alert_dev = builder_dev.create();
+                                alert_dev.show();
                                 break;
                         }
                     }

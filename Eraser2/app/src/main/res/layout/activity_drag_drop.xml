@@ -82,7 +82,7 @@
             android:id="@+id/drag_drop_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/paper_trash"
+            android:background="@mipmap/paper_trash"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

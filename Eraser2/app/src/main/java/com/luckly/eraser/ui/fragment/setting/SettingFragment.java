@@ -45,7 +45,7 @@ public class SettingFragment extends Fragment {
         RecyclerView recyclerView = root.findViewById(R.id.recyler);
 
         list = new ArrayList<Setting>();
-        list.add(new Setting("배경 설정", "배경을 설정 할 수 있는 설정이에요."));
+        list.add(new Setting("배경 설정", "배경을 설정 할 수 있어요."));
         list.add(new Setting("개발자 보기", "개발자를 볼 수 있어요."));
 
         adapter = new SettingAdapter(list, getContext(), this);
