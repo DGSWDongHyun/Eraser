@@ -2,6 +2,7 @@ package com.luckly.eraser.ui.activity.dragndrop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.luckly.eraser.R;
 import com.luckly.eraser.ui.activity.dragndrop.listener.DragDropOnDragListener;
 import com.luckly.eraser.ui.activity.dragndrop.listener.DragDropOnTouchListener;
+import com.luckly.eraser.ui.activity.main.MainActivity;
 
 
 public class DragDropActivity extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class DragDropActivity extends AppCompatActivity {
 
     private void initControls()
     {
+        BitmapDrawable bit = MainActivity.getBackground();
         SoundPool soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         int soundID = soundPool.load(getApplicationContext(), R.raw.sound_paper, 1);
 
@@ -78,8 +81,9 @@ public class DragDropActivity extends AppCompatActivity {
 
         if(ConstraintLayoutTop == null)
         {
-            ConstraintLayoutTop = (ConstraintLayout)findViewById(R.id.drag_drop_left_layout);
 
+            ConstraintLayoutTop = (ConstraintLayout)findViewById(R.id.drag_drop_left_layout);
+            ConstraintLayoutTop.setBackground(bit);
             // Set on drag listener to target dropped view.
             ConstraintLayoutTop.setOnDragListener(new DragDropOnDragListener(context, this));
         }

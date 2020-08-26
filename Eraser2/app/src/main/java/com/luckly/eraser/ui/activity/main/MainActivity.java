@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private ImageView Recorder_;
     private int nowPlaying = 0;
-    ConstraintLayout container;
+    static ConstraintLayout container;
     Bitmap bitmap;
     BackPressCloseHandler backPressCloseHandler;
     String lawBitmap;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public BitmapDrawable getBackground(){
+    public static BitmapDrawable getBackground(){
         return new BitmapDrawable(((BitmapDrawable)container.getBackground()).getBitmap());
     }
     @Override
@@ -115,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("Bitmap_String", lawBitmap);
         editor.commit();
         super.onDestroy();
+    }
+    public void setMusic(){
+        mediaPlayer.stop();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ghostsong);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
     }
     private void musicPlayer(){
         mediaPlayer = MediaPlayer.create(getApplicationContext(), MusicList[nowPlaying]);

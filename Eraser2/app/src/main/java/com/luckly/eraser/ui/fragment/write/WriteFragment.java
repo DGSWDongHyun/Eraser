@@ -35,13 +35,16 @@ public class WriteFragment extends Fragment {
         submitButton = view.findViewById(R.id.submitButton);
 
         submitButton.setOnClickListener(view1 -> {
-            data.add(new Write(new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date(System.currentTimeMillis())), "당신이 지워버린 오늘의 고민", editText_content.getText().toString()));
-            saveArrayList(data, key);
-            Intent intent = new Intent(getContext(), DragDropActivity.class);
-            String date_str = new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date(System.currentTimeMillis()));
-            intent.putExtra("Date_string", date_str);
-            startActivity(intent);
-            getActivity().overridePendingTransition(R.anim.visible_effects,R.anim.invisible_effects);
+            if(!editText_content.getText().toString().isEmpty()){
+                data.add(new Write(new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date(System.currentTimeMillis())), "당신이 지워버린 오늘의 고민", editText_content.getText().toString()));
+                saveArrayList(data, key);
+                editText_content.setText("");
+                Intent intent = new Intent(getContext(), DragDropActivity.class);
+                String date_str = new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date(System.currentTimeMillis()));
+                intent.putExtra("Date_string", date_str);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.visible_effects,R.anim.invisible_effects);
+            }
         });
 
     }

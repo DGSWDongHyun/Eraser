@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import com.luckly.eraser.R;
 import com.luckly.eraser.data.slider.SliderItem;
 import com.luckly.eraser.data.write.Write;
+import com.luckly.eraser.ui.activity.main.MainActivity;
 import com.luckly.eraser.ui.adapter.list.deleted.EraserAdapter;
 import com.luckly.eraser.ui.adapter.sliderview.SlideAdapter;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
     private ImageView img_music;
     EraserAdapter adapter;
     SlideAdapter adapters;
-    private TextView tv;
+    private TextView tv, music_t;
     List<Write> data = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private SliderView sliderView;
@@ -55,9 +56,12 @@ public class HomeFragment extends Fragment {
         sharedPreferences = getContext().getSharedPreferences(key_time, Context.MODE_PRIVATE);
 
 
+        Music(view);
+
         tv = view.findViewById(R.id.time);
         animation = AnimationUtils.loadAnimation(getContext(), R.anim.anim_rotate);
         img_music = view.findViewById(R.id.img_cd);
+        music_t = view.findViewById(R.id.music_t);
         img_music.setAnimation(animation);
         sliderView = view.findViewById(R.id.imageSlider);
 
@@ -85,12 +89,18 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manger);
     }
-
+    public void Music(View view){
+        music_t = view.findViewById(R.id.music_t);
+        music_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+    }
     public void times(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 tv.setText("당신의 시간\n\n"+new SimpleDateFormat("yyyy.MM.dd / HH : mm : ss").format(new Date(System.currentTimeMillis()))+"\n\n 이곳에서는 편히 있길 바라.");
                 times();
             }
