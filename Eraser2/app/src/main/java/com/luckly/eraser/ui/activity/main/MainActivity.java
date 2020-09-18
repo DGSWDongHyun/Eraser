@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         lawBitmap = sharedPreferences.getString("Bitmap_String", null);
 
-        Log.i("getResult()", lawBitmap);
-
         if(lawBitmap == null)
             container.setBackground(getDrawable(R.drawable.background));
         else {
