@@ -10,7 +10,7 @@
         android:id="@+id/drag_drop_left_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="#454545"
+        android:background="@drawable/splash_bg"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
