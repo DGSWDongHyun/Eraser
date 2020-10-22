@@ -17,15 +17,6 @@ import java.util.*
 class SlideAdapter(private val context: Context?) : SliderViewAdapter<SliderAdapterVH>() {
     private var mSliderItems: MutableList<SliderItem> = ArrayList()
 
-    fun renewItems(sliderItems: MutableList<SliderItem>) {
-        mSliderItems = sliderItems
-        notifyDataSetChanged()
-    }
-
-    fun deleteItem(position: Int) {
-        mSliderItems.removeAt(position)
-        notifyDataSetChanged()
-    }
 
     fun addItem(sliderItem: SliderItem) {
         mSliderItems.add(sliderItem)
@@ -43,7 +34,7 @@ class SlideAdapter(private val context: Context?) : SliderViewAdapter<SliderAdap
                 .load(imageUrl)
                 .fitCenter()
                 .into(viewHolder.imageViewBackground)
-        viewHolder.itemView.setOnClickListener { Toast.makeText(context, "This is item in position $position", Toast.LENGTH_SHORT).show() }
+        viewHolder.itemView.setOnClickListener { }
     }
 
     override fun getCount(): Int {

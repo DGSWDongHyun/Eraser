@@ -20,7 +20,6 @@ import com.google.gson.reflect.TypeToken
 import com.luckly.eraser.R
 import com.luckly.eraser.data.slider.SliderItem
 import com.luckly.eraser.data.write.Write
-import com.luckly.eraser.ui.adapter.list.deleted.EraserAdapter
 import com.luckly.eraser.ui.adapter.sliderview.SlideAdapter
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -29,16 +28,15 @@ import java.util.*
 
 class HomeFragment : Fragment() {
     var animation: Animation? = null
-    var key = "KEY-SAVE"
     var key_time = "KEY-TIME"
     private var img_music: ImageView? = null
-    var adapter: EraserAdapter? = null
     var adapters: SlideAdapter? = null
     private var tv: TextView? = null
     private var music_t: TextView? = null
     var data: List<Write> = ArrayList()
     private var sharedPreferences: SharedPreferences? = null
     private var sliderView: SliderView? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,15 +63,6 @@ class HomeFragment : Fragment() {
         sliderView!!.isAutoCycle = true
         addNewItem(sliderView)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
-        adapter = if (getArrayList(key) != null) {
-            EraserAdapter(getArrayList(key), context)
-        } else {
-            EraserAdapter(data, context)
-        }
-        val manger = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = manger
     }
 
     fun Music(view: View) {
@@ -105,15 +94,5 @@ class HomeFragment : Fragment() {
         val sliderItem3 = SliderItem()
         sliderItem3.imageUrl = Integer(R.drawable.bg_3)
         adapters!!.addItem(sliderItem3)
-    }
-
-    fun getArrayList(key: String?): List<Write>? {
-
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val gson = Gson()
-        val json = prefs.getString(key, null)
-        val type = object : TypeToken<ArrayList<Write?>?>() {}.type
-        return if (json != null) gson.fromJson(json, type) else null
-
     }
 }
