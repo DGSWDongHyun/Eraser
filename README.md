@@ -9,3 +9,7 @@
 3. Bitmap의 개념, BitmapDrawable을 통한 사용자 지정 배경 임포트 
 4. Adapter <-> 액티비티 통신을 통한 onActivityResult 요청 값 / 결과 값 호출
 
+# [ 유지보수 로그 ]
+
+20.10.22
+- 프로젝트 자바 코드 -> 코틀린으로 변경
