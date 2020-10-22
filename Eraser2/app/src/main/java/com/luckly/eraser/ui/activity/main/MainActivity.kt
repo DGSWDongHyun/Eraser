@@ -8,9 +8,14 @@ import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.luckly.eraser.R
 import com.luckly.eraser.ui.activity.splash.SplashActivity
@@ -32,8 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val Home = HomeFragment()
     private val DashBoard = WriteFragment()
     var sharedPreferences: SharedPreferences? = null
-    private val Notification = SettingFragment()
-    private val fragmentManager = supportFragmentManager
+    private var navController : NavController ?= null
 
     // using Class Variable
 
@@ -47,19 +51,44 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.visible_effects, R.anim.invisible_effects)
         container = findViewById(R.id.container)
+
+        var navController2 = Navigation.findNavController(this, R.id.fragment)
+
+        Log.d("d", navController2.currentDestination?.getId().toString());
+
         sharedPreferences = getSharedPreferences(KEY, MODE_PRIVATE)
+
         lawBitmap = sharedPreferences!!.getString("Bitmap_String", null)
+
         if (lawBitmap == null) container!!.setBackground(getDrawable(R.drawable.background)) else {
             bitmap = StringToBitMap(lawBitmap)
             container!!.setBackground(BitmapDrawable(bitmap))
         }
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.frames, Home).commitAllowingStateLoss()
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView.setOnNavigationItemSelectedListener(ItemSelectedListener())
+
+        //init navView.
+        val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        AppBarConfiguration.Builder(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications).build()
+        navController = Navigation.findNavController(this, R.id.fragment)
+        NavigationUI.setupWithNavController(navView, navController!!)
+        //end. - navView
+
         musicPlayer() // music On.
     }
+    internal inner class ItemSelectedListener : BottomNavigationView.OnNavigationItemSelectedListener {
+        override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
 
+                }
+                R.id.navigation_write -> {
+                }
+                R.id.navigation_settings -> {
+
+                }
+            }
+            return true
+        }
+    }
     override fun onBackPressed() {
         backPressCloseHandler!!.onBackPressed()
     }
@@ -104,28 +133,6 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer!!.isLooping = true
         mediaPlayer!!.start()
     }
-
-    internal inner class ItemSelectedListener : BottomNavigationView.OnNavigationItemSelectedListener {
-        override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-            val transaction = fragmentManager.beginTransaction()
-            when (menuItem.itemId) {
-                R.id.navigation_home -> {
-                    transaction.setCustomAnimations(R.anim.visible_effects, R.anim.invisible_effects)
-                    transaction.replace(R.id.frames, Home).commitAllowingStateLoss()
-                }
-                R.id.navigation_write -> {
-                    transaction.setCustomAnimations(R.anim.visible_effects, R.anim.invisible_effects)
-                    transaction.replace(R.id.frames, DashBoard).commitAllowingStateLoss()
-                }
-                R.id.navigation_settings -> {
-                    transaction.setCustomAnimations(R.anim.visible_effects, R.anim.invisible_effects)
-                    transaction.replace(R.id.frames, Notification).commitAllowingStateLoss()
-                }
-            }
-            return true
-        }
-    }
-
     companion object {
         var container: ConstraintLayout? = null
         private const val KEY = "SAVE_IMAGE"

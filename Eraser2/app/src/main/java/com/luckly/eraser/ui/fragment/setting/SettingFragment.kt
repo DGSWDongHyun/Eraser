@@ -42,7 +42,7 @@ class SettingFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE) {
             try {
-                val `in` = context!!.contentResolver.openInputStream(data!!.data!!)
+                val `in` = requireActivity().contentResolver.openInputStream(data!!.data!!)
                 val img = BitmapFactory.decodeStream(`in`)
                 `in`!!.close()
                 val settingDetailView = View.inflate(context, R.layout.dialog_setting, null)
