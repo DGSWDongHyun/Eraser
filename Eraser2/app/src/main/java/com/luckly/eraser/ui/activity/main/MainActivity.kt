@@ -74,21 +74,6 @@ class MainActivity : AppCompatActivity() {
 
         musicPlayer() // music On.
     }
-    internal inner class ItemSelectedListener : BottomNavigationView.OnNavigationItemSelectedListener {
-        override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-            when (menuItem.itemId) {
-                R.id.navigation_home -> {
-
-                }
-                R.id.navigation_write -> {
-                }
-                R.id.navigation_settings -> {
-
-                }
-            }
-            return true
-        }
-    }
     override fun onBackPressed() {
         backPressCloseHandler!!.onBackPressed()
     }
