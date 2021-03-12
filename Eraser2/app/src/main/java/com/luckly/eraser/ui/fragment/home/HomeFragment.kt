@@ -18,8 +18,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.luckly.eraser.R
-import com.luckly.eraser.data.slider.SliderItem
-import com.luckly.eraser.data.write.Write
+import com.luckly.eraser.data.SliderItem
+import com.luckly.eraser.data.Write
+import com.luckly.eraser.databinding.FragmentHomeBinding
 import com.luckly.eraser.ui.adapter.sliderview.SlideAdapter
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -29,70 +30,61 @@ import java.util.*
 class HomeFragment : Fragment() {
     var animation: Animation? = null
     var key_time = "KEY-TIME"
-    private var img_music: ImageView? = null
     var adapters: SlideAdapter? = null
-    private var tv: TextView? = null
-    private var music_t: TextView? = null
     var data: List<Write> = ArrayList()
     private var sharedPreferences: SharedPreferences? = null
-    private var sliderView: SliderView? = null
+    private lateinit var homeBinding : FragmentHomeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPreferences = requireContext().getSharedPreferences(key_time, Context.MODE_PRIVATE)
-        Music(view)
 
-        tv = view.findViewById(R.id.time)
+        setUpTime()
+        setUpSlider()
+        setUpAnimation()
+
+    }
+
+    private fun setUpAnimation() {
         animation = AnimationUtils.loadAnimation(context, R.anim.anim_rotate)
-        img_music = view.findViewById(R.id.img_cd)
-        music_t = view.findViewById(R.id.music_t)
-        img_music!!.animation = animation
-        sliderView = view.findViewById(R.id.imageSlider)
+        homeBinding.imgCd.animation = animation
+    }
 
-        times()
-
+    private fun setUpSlider() {
         adapters = SlideAdapter(context)
 
-        sliderView!!.setSliderAdapter(adapters!!)
-        sliderView!!.setSliderAnimationDuration(2500)
-        sliderView!!.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION)
-        sliderView!!.startAutoCycle()
-        sliderView!!.setIndicatorEnabled(false)
-        sliderView!!.scrollTimeInSec = 3;
-        sliderView!!.isAutoCycle = true
-        addNewItem(sliderView)
-
+        homeBinding.imageSlider.setSliderAdapter(adapters!!)
+        homeBinding.imageSlider.setSliderAnimationDuration(2500)
+        homeBinding.imageSlider.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION)
+        homeBinding.imageSlider.startAutoCycle()
+        homeBinding.imageSlider.setIndicatorEnabled(false)
+        homeBinding.imageSlider.scrollTimeInSec = 3;
+        homeBinding.imageSlider.isAutoCycle = true
+        addNewItem(homeBinding.imageSlider)
     }
 
-    fun Music(view: View) {
-        music_t = view.findViewById(R.id.music_t)
-        music_t!!.setOnClickListener(View.OnClickListener { })
-    }
-
-    fun times() {
+    private fun setUpTime() {
         Handler().postDelayed({
-            tv!!.text = """당신의 시간 ${SimpleDateFormat("yyyy.MM.dd / HH : mm : ss").format(Date(System.currentTimeMillis()))} 이곳에서는 편히 있길 바라."""
-            times()
+            homeBinding.time.text = """당신의 시간 \n${SimpleDateFormat("yyyy.MM.dd / HH : mm : ss").format(Date(System.currentTimeMillis()))}\n이곳에서는 편히 있길 바래요."""
+            setUpTime()
         }, 1000)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        homeBinding = FragmentHomeBinding.inflate(layoutInflater)
+        return homeBinding.root
     }
 
-    fun addNewItem(view: View?) {
-        val sliderItem = SliderItem()
-        sliderItem.imageUrl = Integer(R.drawable.bg_1)
-        adapters!!.addItem(sliderItem)
+    private fun addNewItem(view: View?) {
+        val firSliderItem = SliderItem(Integer(R.drawable.bg_1))
+        adapters!!.addItem(firSliderItem)
 
-        val sliderItem2 = SliderItem()
-        sliderItem2.imageUrl = Integer(R.drawable.bg_2)
-        adapters!!.addItem(sliderItem2)
+        val secSliderItem = SliderItem(Integer(R.drawable.bg_2))
+        adapters!!.addItem(secSliderItem)
 
-        val sliderItem3 = SliderItem()
-        sliderItem3.imageUrl = Integer(R.drawable.bg_3)
-        adapters!!.addItem(sliderItem3)
+        val thrSliderItem = SliderItem(Integer(R.drawable.bg_3))
+        adapters!!.addItem(thrSliderItem)
     }
 }

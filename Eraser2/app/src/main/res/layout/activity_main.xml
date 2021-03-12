@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/shape_box"
         android:elevation="8dp"
         app:itemIconTint="@drawable/color"
@@ -25,7 +25,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragmentNavHost"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/mobile_navigation"
         app:defaultNavHost="true"
