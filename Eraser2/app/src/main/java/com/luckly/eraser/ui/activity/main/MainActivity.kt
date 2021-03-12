@@ -9,6 +9,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
@@ -71,7 +72,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-         return
+         buildReqEndAlert()
+    }
+
+    private fun buildReqEndAlert() {
+        val alertReq = AlertDialog.Builder(this)
+                .setTitle("고민이 많을때면, 언제든 다시 찾아오세요.")
+                .setMessage("\n저는 언제든지 이곳에 있습니다 :)")
+                .setNegativeButton("아직 안 나갈래요.") { i, dlInterface ->  }
+                .setPositiveButton("언제든 다시 올게요.") { i, dlInterface -> finish() }
+                .create()
+
+        alertReq.show()
     }
 
     private fun bitMapToString(bitmap: Bitmap): String {

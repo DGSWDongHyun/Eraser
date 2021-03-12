@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.luckly.eraser.R
-import com.luckly.eraser.data.slider.SliderItem
+import com.luckly.eraser.data.SliderItem
 import com.luckly.eraser.ui.adapter.sliderview.SlideAdapter.SliderAdapterVH
 import com.smarteist.autoimageslider.SliderViewAdapter
 import java.util.*
@@ -43,10 +43,7 @@ class SlideAdapter(private val context: Context?) : SliderViewAdapter<SliderAdap
     }
 
     inner class SliderAdapterVH(itemView: View) : ViewHolder(itemView) {
-        var imageViewBackground: ImageView
+        var imageViewBackground: ImageView = itemView.findViewById(R.id.iv_auto_image_slider)
 
-        init {
-            imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider)
-        }
     }
 }

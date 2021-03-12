@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.luckly.eraser.R
-import com.luckly.eraser.data.setting.Setting
+import com.luckly.eraser.data.Setting
 import com.luckly.eraser.ui.activity.main.MainActivity
 import com.luckly.eraser.ui.adapter.list.setting.SettingAdapter.SettingViewHolder
 
@@ -26,8 +26,8 @@ class SettingAdapter(var setting: List<Setting>?, var context: Context?, var fra
 
     override fun onBindViewHolder(holder: SettingViewHolder, position: Int) {
         val (Title, Description) = setting!![position]
-        holder.textView_title.text = Title
-        holder.textView_description.text = Description
+        holder.textViewTitle.text = Title
+        holder.textViewDescription.text = Description
     }
 
     override fun getItemCount(): Int {
@@ -35,8 +35,8 @@ class SettingAdapter(var setting: List<Setting>?, var context: Context?, var fra
     }
 
     inner class SettingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textView_title: TextView
-        var textView_description: TextView
+        var textViewTitle: TextView
+        var textViewDescription: TextView
 
         init {
             itemView.setOnClickListener {
@@ -56,13 +56,13 @@ class SettingAdapter(var setting: List<Setting>?, var context: Context?, var fra
                         }
                         "개발자 보기" -> {
                             val aboutDeveloper = View.inflate(context, R.layout.setting_dev, null)
-                            val builder_dev = AlertDialog.Builder(context)
+                            val builderDev = AlertDialog.Builder(context)
                                     .setTitle("개발자 보기")
                                     .setCancelable(false)
                                     .setView(aboutDeveloper)
                                     .setPositiveButton("확인") { dialogInterface, i -> }
-                            val alert_dev = builder_dev.create()
-                            alert_dev.show()
+                            val alertDev = builderDev.create()
+                            alertDev.show()
                         }
                         "설정 초기화" -> {
                             val bitmap = (context!!.getDrawable(R.drawable.background) as BitmapDrawable?)!!.bitmap
@@ -71,18 +71,18 @@ class SettingAdapter(var setting: List<Setting>?, var context: Context?, var fra
                     }
                 }
             }
-            textView_title = itemView.findViewById(R.id.title)
-            textView_description = itemView.findViewById(R.id.description)
+            textViewTitle = itemView.findViewById(R.id.title)
+            textViewDescription = itemView.findViewById(R.id.description)
         }
     }
 
     private fun initializeSetting(settingDetailView: View, alert: AlertDialog) {
 
-        val button = settingDetailView.findViewById<Button>(R.id.Select_Button)
-        val img = settingDetailView.findViewById<ImageView>(R.id.img_bg)
-        img.setImageDrawable((activity as MainActivity).getBackground())
+        val selectButton = settingDetailView.findViewById<Button>(R.id.selectButton)
+        val imgBg = settingDetailView.findViewById<ImageView>(R.id.imgBg)
+        imgBg.setImageDrawable((activity as MainActivity).getBackground())
 
-        button.setOnClickListener { v: View? ->
+        selectButton.setOnClickListener { v: View? ->
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT

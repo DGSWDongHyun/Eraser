@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.luckly.eraser.R
 import com.luckly.eraser.data.Setting
 import com.luckly.eraser.databinding.FragmentSettingBinding
@@ -69,7 +68,7 @@ class SettingFragment : Fragment() {
     }
 
     private fun initializeSetting(settingDetailView: View, bitmap: Bitmap) {
-        val imageView = settingDetailView.findViewById<ImageView>(R.id.img_bg)
+        val imageView = settingDetailView.findViewById<ImageView>(R.id.imgBg)
         imageView.setImageDrawable(BitmapDrawable(bitmap))
     }
 

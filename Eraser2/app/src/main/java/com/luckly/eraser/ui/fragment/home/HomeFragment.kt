@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpTime() {
         Handler().postDelayed({
-            homeBinding.time.text = """당신의 시간 \n${SimpleDateFormat("yyyy.MM.dd / HH : mm : ss").format(Date(System.currentTimeMillis()))}\n이곳에서는 편히 있길 바래요."""
+            homeBinding.time.text = "당신의 시간 \n${SimpleDateFormat("yyyy.MM.dd / HH : mm : ss").format(Date(System.currentTimeMillis()))} \n이곳에서는 편히 있길 바래요."
             setUpTime()
         }, 1000)
     }
